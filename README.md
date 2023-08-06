@@ -33,7 +33,7 @@ DC&amp;M 하계 Spring 방중 교육을 목적으로 만든 실습 웹페이지
 
 | JavaScript | SpringBoot |  BootStrap  |  Html5  |  Gradle  |
 | :--------: | :--------: | :---------: | :-----: | :------: |
-|   ![js]    |   ![ts]    |  ![react]   | ![node] | ![node]  |
+|            |            |             |         |          |
 
 <br>
 
