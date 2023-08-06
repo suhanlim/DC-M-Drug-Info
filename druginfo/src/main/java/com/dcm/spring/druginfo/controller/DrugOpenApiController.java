@@ -2,6 +2,7 @@ package com.dcm.spring.druginfo.controller;
 
 import com.dcm.spring.druginfo.model.DrugResponseDto;
 import com.dcm.spring.druginfo.service.DrugService;
+import com.dcm.spring.druginfo.service.PublicApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,15 +17,15 @@ import java.nio.charset.StandardCharsets;
 
 @RestController
 public class DrugOpenApiController {
-    private final DrugService drugService;
+    private final PublicApiService publicApiService;
 
     @Autowired
     public DrugOpenApiController(DrugService drugService) {
-        this.drugService = drugService;
+        this.publicApiService = drugService;
     }
 
     @GetMapping(value = "/PublicData/{itemName}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<Object> getDrugInfo(@PathVariable String itemName){
-        return drugService.getInfo(itemName);
+        return publicApiService.getInfo(itemName);
     }
 }

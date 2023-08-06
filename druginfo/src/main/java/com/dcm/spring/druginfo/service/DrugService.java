@@ -11,7 +11,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 @Service
-public class DrugService {
+public class DrugService implements PublicApiService{
     private final static String BASE_URL = "http://apis.data.go.kr/1471000/DrbEasyDrugInfoService/getDrbEasyDrugList";
     private final String API_KEY = "2SKRXQ8IZz8FeCOyzzs8hgyk0YWybv0fp5wAMHnsnrgPTiEqwl%2FxxQSs%2BZMHxjUSUxZWIQ37pEh9zUjkqh9zlg%3D%3D";
     public Mono<Object> getInfo(@PathVariable String itemName) {
