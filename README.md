@@ -14,6 +14,7 @@ IntelliJ IDEA Ultimate, VisualStudioCode
 
 ## 주의:
 데이터 베이스 작업이 되어 있지 않아 업로드 처음 검색 속도가 느립니다.
+
 SOLID 원칙을 설명하기 위해 사용되지 않는 식품 검색API가 추가로 사용 되었습니다.
 
 ## 이미지:
