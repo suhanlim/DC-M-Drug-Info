@@ -17,8 +17,11 @@ DC&amp;M 하계 Spring 방중 교육을 목적으로 만든 실습 웹페이지
 </p>
 
 ## 프로젝트 구조
+<p align="center">
+  <br>
 <img width="709" alt="image" src="https://github.com/suhanlim/DC-M-Drug-Info/assets/51906310/081a23ee-d73a-4bfa-ba9b-a82cdbd91cc7">
-
+  <br>
+</p>
 
 <p align="center">
 
