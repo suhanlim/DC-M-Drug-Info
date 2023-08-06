@@ -16,6 +16,9 @@ DC&amp;M 하계 Spring 방중 교육을 목적으로 만든 실습 웹페이지
   Spring 프레임워크와 의약품 공공포탈 api를 활용하여 제작한 의약품 검색 웹페이지 서버 프로그램
 </p>
 
+## 프로젝트 구조
+<img width="709" alt="image" src="https://github.com/suhanlim/DC-M-Drug-Info/assets/51906310/081a23ee-d73a-4bfa-ba9b-a82cdbd91cc7">
+
 
 <p align="center">
 
