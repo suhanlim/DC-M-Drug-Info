@@ -1,5 +1,6 @@
 package com.dcm.spring.druginfo.controller;
 
+import com.dcm.spring.druginfo.model.DrugResponseDto;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,8 +17,11 @@ public class DrugOpenApiController {
     private final static String BASE_URL = "http://apis.data.go.kr/1471000/DrbEasyDrugInfoService/getDrbEasyDrugList";
     private final String API_KEY = "2SKRXQ8IZz8FeCOyzzs8hgyk0YWybv0fp5wAMHnsnrgPTiEqwl%2FxxQSs%2BZMHxjUSUxZWIQ37pEh9zUjkqh9zlg%3D%3D";
 
+    private Mono<Object> convertToMedication(DrugResponseDto drugResponseDTO) {
+        return Mono.just(drugResponseDTO.getBody().getItems().get(0));
+    }
     @GetMapping(value = "/PublicData/{itemName}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<String> getDrugInfo(@PathVariable String itemName) {
+    public Mono<Object> getInfo(@PathVariable String itemName) {
         DefaultUriBuilderFactory factory = new DefaultUriBuilderFactory(BASE_URL);
         factory.setEncodingMode(DefaultUriBuilderFactory.EncodingMode.VALUES_ONLY);
         String encodedItemName = URLEncoder.encode(itemName, StandardCharsets.UTF_8);
@@ -26,7 +30,7 @@ public class DrugOpenApiController {
                 .baseUrl(BASE_URL)
                 .build();
 
-        Mono<String> response = webClient.get()
+        Mono<DrugResponseDto> response = webClient.get()
                 .uri(uriBuilder -> uriBuilder
                         .queryParam("serviceKey", API_KEY)
                         .queryParam("pageNo", "1")
@@ -46,8 +50,8 @@ public class DrugOpenApiController {
                         .queryParam("type", "json")
                         .build())
                 .retrieve()
-                .bodyToMono(String.class);
+                .bodyToMono(DrugResponseDto.class);
 
-        return response;
+        return response.flatMap(this::convertToMedication);
     }
 }
