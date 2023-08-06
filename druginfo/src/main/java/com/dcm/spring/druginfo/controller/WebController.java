@@ -12,5 +12,9 @@ public class WebController {
     @GetMapping("/tmp")
     public String tmp(){
         return "tmp";
+    }  
+    @GetMapping("/search")
+    public String search(){
+        return "search";
     }
 }
