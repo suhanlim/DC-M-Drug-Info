@@ -2,6 +2,7 @@ package com.dcm.spring.druginfo.controller;
 
 import com.dcm.spring.druginfo.model.DrugResponseDto;
 import com.dcm.spring.druginfo.service.DrugService;
+import com.dcm.spring.druginfo.service.FoodService;
 import com.dcm.spring.druginfo.service.PublicApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -20,7 +21,7 @@ public class DrugOpenApiController {
     private final PublicApiService publicApiService;
 
     @Autowired
-    public DrugOpenApiController(DrugService drugService) {
+    public DrugOpenApiController(FoodService drugService) {
         this.publicApiService = drugService;
     }
 
