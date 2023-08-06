@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<head>
+  <title>OpenAPI 데이터 조회</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<h1>OpenAPI 데이터 조회</h1>
+<form id="search-form">
+  <input type="text" id="targetName" placeholder="타겟의 이름을 입력하세요">
+  <button type="submit">검색</button>
+</form>
+
+<div id="data-container">
+  <!-- 이 공간에 동적으로 데이터가 추가됩니다. -->
+</div>
+
+<script th:inline="javascript">
+  $(document).ready(function(){
+    $("#search-form").submit(function(event){
+      event.preventDefault();
+      var targetName= $("#targetName").val();
+      $.ajax({
+        url: '/PublicData/' + targetName,
+        type: 'get',
+        success: function(data) {
+          var container = document.getElementById('data-container');
+
+          // 컨테이너 내용 초기화
+          while (container.firstChild) {
+            container.removeChild(container.firstChild);
+          }
+
+          // 데이터의 형식 확인
+          if (data.hasOwnProperty('item')) {
+            // 새로운 형식의 JSON 처리
+            for (let key of Object.keys(data.item)) {
+              var element = document.createElement('p');
+
+              if (key === 'imgurl1' || key === 'imgurl2') {
+                var img = document.createElement('img');
+                img.src = data.item[key];
+                element.appendChild(img);
+              } else {
+                var textNode = document.createTextNode(key + ': ' + data.item[key]);
+                element.appendChild(textNode);
+              }
+
+              container.appendChild(element);
+            }
+          } else {
+            // 기존의 JSON 형식 처리
+            for (let key of Object.keys(data)) {
+              var element = document.createElement('p');
+
+              if (key === 'itemImage' && data[key]) {
+                var img = document.createElement('img');
+                img.src = data[key];
+                element.appendChild(img);
+              } else {
+                var textNode = document.createTextNode(key + ': ' + data[key]);
+                element.appendChild(textNode);
+              }
+
+              container.appendChild(element);
+            }
+          }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          alert("An error occurred: " + textStatus);
+        }
+      });
+    });
+  });
+</script>
+
+
+
+</body>
+</html>

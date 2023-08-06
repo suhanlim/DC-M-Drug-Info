@@ -9,4 +9,8 @@ public class WebController {
     public String home(){
         return "home";
     }
+    @GetMapping("/tmp")
+    public String tmp(){
+        return "tmp";
+    }
 }
